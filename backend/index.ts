@@ -8,12 +8,5 @@ const app = new Hono();
 
 app.route('/api', authRoutes);
 app.route('/api', chirpRoutes);
-app.use(
-  '*',
-  cors({
-    origin: process.env.CLIENT_URL!,
-    credentials: true,
-  })
-);
 
 serve({ fetch: app.fetch, port: parseInt(process.env.PORT!) });

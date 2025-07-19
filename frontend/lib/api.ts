@@ -3,7 +3,7 @@ import { Chirp } from "@/types/chirp";
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 export async function register(data: { username: string; password: string }) {
-  const res = await fetch(`${API_URL}/register`, {
+  const res = await fetch(`/api/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -13,7 +13,7 @@ export async function register(data: { username: string; password: string }) {
 }
 
 export async function login(data: { username: string; password: string }) {
-  const res = await fetch(`${API_URL}/login`, {
+  const res = await fetch(`/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
@@ -23,13 +23,13 @@ export async function login(data: { username: string; password: string }) {
 }
 
 export async function fetchChirps(): Promise<Chirp[]>  {
-  const res = await fetch(`${API_URL}/chirps`);
+  const res = await fetch(`/api/chirps`);
   return res.json();
 }
 
 export async function postChirp(content: string) {
   const token = localStorage.getItem('token');
-  const res = await fetch(`${API_URL}/chirps`, {
+  const res = await fetch(`/api/chirps`, {
     method: 'POST',
     credentials: 'include',
     headers: {
